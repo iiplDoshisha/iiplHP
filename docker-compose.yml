@@ -35,13 +35,14 @@ services:
   db:
     container_name: mysql_container
     image: mysql:8.0.36
+    platform: linux/amd64
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: iipl_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       TZ: "Asia/Tokyo"
     volumes:
       - ./mysql/data/:/var/lib/mysql
@@ -59,8 +60,8 @@ services:
     environment:
       - PMA_ARBIRITY=1
       - PMA_HOSTS=db
-      - PMA_USER=user
-      - PMA_PASSWORD=password
+      - PMA_USER=${DB_USER}
+      - PMA_PASSWORD=${DB_PASSWORD}
     ports:
       - "3300:80"
     volumes:
