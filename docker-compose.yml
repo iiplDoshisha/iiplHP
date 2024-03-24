@@ -12,10 +12,10 @@ services:
     tty: true
     networks:
       - backend_network
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
     ports:
-      - 8000:8000
+      - "8000:8000"
     command: sh -c 'go mod tidy && air'
 
   backend-server:
@@ -32,22 +32,41 @@ services:
     networks:
       - backend_network
 
-  # db:
-  #   build: ./mysql
-  #   command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-  #   ports:
-  #     - "3306:3306"
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: account
-  #     MYSQL_USER: user
-  #     MYSQL_PASSWORD: password
-  #     TZ: "Asia/Tokyo"
-  #   volumes:
-  #     - ./mysql_volume:/var/lib/mysql
-  #     - ./sql:/docker-entrypoint-initdb.d
-  #   networks:
-  #     - backend_network
+  db:
+    container_name: mysql_container
+    image: mysql:8.0.36
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: iipl_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./mysql/data/:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/sql:/docker-entrypoint-initdb.d
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - backend_network
+  
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin_container
+    depends_on:
+      - db
+    environment:
+      - PMA_ARBIRITY=1
+      - PMA_HOSTS=db
+      - PMA_USER=user
+      - PMA_PASSWORD=password
+    ports:
+      - "3300:80"
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+    networks:
+      - backend_network
 
   web-front:
     image: node
@@ -57,7 +76,7 @@ services:
     volumes:
       - ./frontend/web-front:/home/app/frontend
     ports:
-      - 3000:3000
+      - "3000:3000"
     working_dir: /home/app/frontend
     command:
       [
@@ -78,6 +97,7 @@ services:
       - web-front
     networks:
       - frontend_network
+
 networks:
   backend_network:
     driver: bridge
