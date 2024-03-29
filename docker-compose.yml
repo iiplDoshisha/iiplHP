@@ -6,7 +6,7 @@ services:
     # env_file: ./backend/web-back/.env
     build: ./backend/web-back/.
     volumes:
-      - ./backend/web-back:/code/
+      - ./backend/web-back/api:/go/src/api/
       - static_volume:/code/staticfiles
     stdin_open: true
     tty: true
@@ -15,7 +15,8 @@ services:
     depends_on:
       - db
     ports:
-      - "8000:8000"
+      - 90:90
+    working_dir: /go/src/api/
     command: sh -c 'go mod tidy && air'
 
   backend-server:
