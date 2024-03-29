@@ -2,5 +2,6 @@
 .DS_Store
 .env
 
-mysql_volume/*
+mysql/data/*
+phpmyadmin/sessions
 !mysql_volume/.gitkeep
