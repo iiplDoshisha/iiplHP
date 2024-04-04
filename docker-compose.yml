@@ -13,11 +13,17 @@ services:
     networks:
       - backend_network
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - 90:90
     working_dir: /go/src/api/
     command: sh -c 'go mod tidy && air'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
 
   backend-server:
     container_name: nginx_back
@@ -52,7 +58,9 @@ services:
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       - backend_network
-  
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD
+
   phpmyadmin:
     image: phpmyadmin
     container_name: phpmyadmin_container
