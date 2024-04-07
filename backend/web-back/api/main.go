@@ -1,6 +1,7 @@
 package main
 
 import (
+	"api/database"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -8,8 +9,9 @@ import (
 )
 
 func main() {
-	// GORMセット
-	// database.Connect()
+    // GORMセット
+    println("db connecting")
+    database.Connect()
 
     e := echo.New()
 
@@ -22,6 +24,8 @@ func main() {
 
     // サーバーをポート番号1323で起動
     e.Logger.Fatal(e.Start(":90"))
+
+    
 }
 
 func hello(c echo.Context) error {

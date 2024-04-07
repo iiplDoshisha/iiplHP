@@ -23,9 +23,9 @@ var (
 func Connect() {
 	connection, err := gorm.Open(mysql.Open(datasourceName), &gorm.Config{})
 	if err != nil {
-		panic("Could not connect to the database")
+		panic(fmt.Sprintf("Could not connect to the database: %v", err))
 	}
-	panic("db connected!!")
+	fmt.Println("Connected to the database successfully!")
 	
 	//コネクション情報を追加
 	DB = connection
