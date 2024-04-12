@@ -2,32 +2,18 @@ package main
 
 import (
 	"api/database"
-	"net/http"
-
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+	"api/router"
 )
 
 func main() {
-    // GORMセット
-    println("db connecting")
-    database.Connect()
+	// GORMセット
+	println("db connecting")
+	database.Connect()
 
-    e := echo.New()
+	//ルーティングを設定
+	e := router.NewRouter()
 
-    // ミドルウェアを設定
-    e.Use(middleware.Logger())
-    e.Use(middleware.Recover())
+	// サーバーをポート番号1323で起動
+	e.Logger.Fatal(e.Start(":90"))
 
-    // ルートを設定
-    e.GET("/", hello) 
-
-    // サーバーをポート番号1323で起動
-    e.Logger.Fatal(e.Start(":90"))
-
-    
-}
-
-func hello(c echo.Context) error {
-    return c.String(http.StatusOK, "Hello, World!")
 }
