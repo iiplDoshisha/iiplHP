@@ -7,6 +7,8 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+
+	"api/models"
 )
  
 var (
@@ -29,4 +31,7 @@ func Connect() {
 	
 	//コネクション情報を追加
 	DB = connection
+
+	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.Year{})
 }
