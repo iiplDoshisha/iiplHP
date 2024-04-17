@@ -1,12 +1,8 @@
 FROM nginx:1.19.4-alpine
-
-RUN apk add --no-cache bash
-
+RUN apk add --no-cache bash && sed -i -e 's/bin\/ash/bin\/bash/' /etc/passwd
 COPY wait.sh /wait.sh
-
 RUN chmod +x /wait.sh
-
-CMD ["/wait.sh", "web-front:3000", "--", "nginx", "-g", "daemon off;"]
-
+# CMD ["/wait.sh", "web-front:3000", "--", "nginx", "-g", "daemon off;"]
+CMD ["/bin/bash", "/wait.sh", "web-front:3000", "--", "nginx", "-g", "daemon off;"]
 RUN rm /etc/nginx/conf.d/default.conf
 COPY default.dev.conf /etc/nginx/conf.d
