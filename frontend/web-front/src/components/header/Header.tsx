@@ -3,49 +3,6 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
-// const styles = {
-//     header:`
-//         flex
-//         -top-0
-//         fixed
-//         w-full
-//         h-32
-//         overflow-hidden
-//         z-10
-//         bg-transparent
-//     `,
-//     humbarger:`
-//         h-6 w-6 fill-current
-//         justify-between
-//     `,
-//     header_nav:`
-//         fixed
-//         right-16
-//         top-9
-//     `,
-//     header_ul:`
-//         inline-flex
-//         list-none
-//     `,
-//     header_li:`
-//         inline-flex
-//         list-none
-//     `,
-//     menu_link:`
-//         block
-//         p-2.5
-//         text-center
-//         text-base
-//         no-underline
-//         mb-3
-//         mt-5
-//         mr-3 
-//         hover:bg-amber-300 rounded-full 
-//     `,
-
-// };
-
 const styles = {
     
     //md:~~  768pxで適応
@@ -159,45 +116,3 @@ const Header = () => {
   )
 }
 export default Header
-
-
-
-{/* <nav className={styles.header_nav}>
-<ul className={styles.header_ul}>
-    <li className={styles.header_li}>
-        <Link  href="/components/Introduction/Main" as="/introduction" legacyBehavior>
-            <a className={styles.menu_link}>研究分野</a>
-        </Link>
-    </li>
-    <li className={styles.header_li}>
-        <Link  href="/components/Menber/Main" as="/member" legacyBehavior >
-            <a className={styles.menu_link}>メンバー</a>
-        </Link>
-    </li>
-    <li className={styles.header_li}>
-        <Link  href="/components/Achievement/Main" as="/achievement" legacyBehavior >
-            <a className={styles.menu_link}>研究業績</a>
-        </Link>
-    </li>
-    <li className={styles.header_li}>
-        <Link  href="/components/ForStudents/Main" as="/forStudents" legacyBehavior >
-            <a className={styles.menu_link}>学生の方へ</a>
-        </Link>
-    </li>
-    <li className={styles.header_li}>
-        <Link  href="/components/Blog/Main" as="/blog" legacyBehavior >
-            <a className={styles.menu_link}>ブログ</a>
-        </Link>
-    </li>
-    <li className={styles.header_li}>
-        <Link  href="/components/Others/Main" as="/others" legacyBehavior >
-            <a className={styles.menu_link}>その他</a>
-        </Link>
-    </li>
-    <li className={styles.header_li}>
-        <Link  href="/components/Access/Main" as="/access" legacyBehavior >
-            <a className={styles.menu_link}>アクセス</a>
-        </Link>
-    </li>
-</ul>
-</nav> */}
