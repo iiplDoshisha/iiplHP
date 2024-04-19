@@ -88,8 +88,6 @@ services:
     ports:
       - "3000:3000"
     working_dir: /home/app/frontend
-    environment:
-      - WATCHPACK_POLLING=true
     command:
       [
         bash,
