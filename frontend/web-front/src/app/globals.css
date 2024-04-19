@@ -1,33 +1,31 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+
+body{
+  background-color: #f2f2f2;           /*基本の背景色*/
+  color:#7F7F7F;                       /*説明文などのフォント色*/
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+h1{
+  color:#595959;                       /*タイトルのフォント色*/
+  font-family: 'Impact', sans-serif;     /*フォントの指定*/
+  font-size: 100px;
+  text-align: center;
+  line-height: 300px;
+}
+@media (max-width: 767px) {
+  h1 {
+    font-size: 100px; /* 画面幅が 768px 未満の場合のフォントサイズ */
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* 画面幅が 480px 未満の場合 */
+@media (max-width: 479px) {
+  h1 {
+    font-size: 50px; /* 画面幅が 480px 未満の場合のフォントサイズ */
+    line-height: 100px;
   }
 }
