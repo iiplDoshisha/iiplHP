@@ -7,24 +7,3 @@ body{
   background-color: #f2f2f2;           /*基本の背景色*/
   color:#7F7F7F;                       /*説明文などのフォント色*/
 }
-
-h1{
-  color:#595959;                       /*タイトルのフォント色*/
-  font-family: 'Impact', sans-serif;     /*フォントの指定*/
-  font-size: 100px;
-  text-align: center;
-  line-height: 300px;
-}
-@media (max-width: 767px) {
-  h1 {
-    font-size: 100px; /* 画面幅が 768px 未満の場合のフォントサイズ */
-  }
-}
-
-/* 画面幅が 480px 未満の場合 */
-@media (max-width: 479px) {
-  h1 {
-    font-size: 50px; /* 画面幅が 480px 未満の場合のフォントサイズ */
-    line-height: 100px;
-  }
-}
