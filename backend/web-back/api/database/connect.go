@@ -10,7 +10,7 @@ import (
 
 	"api/models"
 )
- 
+
 var (
 	schema = "%s:%s@tcp(db:3306)/%s?charset=utf8&parseTime=True&loc=Local"
 	// docker-compose.ymlに設定した環境変数を取得
@@ -21,17 +21,16 @@ var (
 	// DBインスタンス
 	DB *gorm.DB
 )
- 
+
 func Connect() {
 	connection, err := gorm.Open(mysql.Open(datasourceName), &gorm.Config{})
 	if err != nil {
 		panic(fmt.Sprintf("Could not connect to the database: %v", err))
 	}
 	fmt.Println("Connected to the database successfully!")
-	
+
 	//コネクション情報を追加
 	DB = connection
 
-	DB.AutoMigrate(&models.User{})
-	DB.AutoMigrate(&models.Year{})
+	DB.AutoMigrate(&models.User{}, &models.Student_year{}, &models.Teacher_year{}, &models.Article{}, &models.Paper{})
 }
