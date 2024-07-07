@@ -13,4 +13,6 @@ type Paper struct { //論文情報を保存するテーブル
 	Source    string
 	Post_date time.Time
 	Url       *string
+	UserID    int
+	User      User
 }
