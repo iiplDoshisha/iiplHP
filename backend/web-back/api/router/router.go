@@ -15,7 +15,7 @@ func NewRouter() *echo.Echo {
 	e.Use(middleware.Recover())
 
 	//APIのルーティング
-	e.GET("/users", controllers.GetUsers)
+	e.GET("/users", controllers.Get_UserList)
 
 	return e
 }
